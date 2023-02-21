@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div class="container flex items-center justify-center rounded">
+  <mat-card>
+    <div class="logo">
+      <img src="assets/pokemon.jpeg" alt="pockemon logo" />
+    </div>
+    <br />
+    <mat-card-content>
+      <mat-card-title class="text-center">Hello Pokemon !</mat-card-title>
+      <mat-card-subtitle> </mat-card-subtitle>
+      <mat-card-actions class="flex justify-center">
+        <button
+          mat-stroked-button
+          [routerLink]="['/cards']"
+          [queryParams]="{ page: 1, pageSize: 10, orderBy: 'name' }"
+          queryParamsHandling="merge"
+        >
+          <span translate> Click to see cards </span>
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>

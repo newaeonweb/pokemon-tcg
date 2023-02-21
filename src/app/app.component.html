@@ -38,6 +38,7 @@
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
   >
     <mat-sidenav
+      class="w-40"
       #snav
       [mode]="mobileQuery.matches ? 'over' : 'side'"
       [fixedInViewport]="mobileQuery.matches"
@@ -51,7 +52,9 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <router-outlet></router-outlet>
+      <div class="p-4">
+        <router-outlet></router-outlet>
+      </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
