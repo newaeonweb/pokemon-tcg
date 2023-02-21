@@ -1,1 +1,308 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$pokemon-tcg-primary: mat.define-palette(mat.$indigo-palette);
+$pokemon-tcg-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$pokemon-tcg-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$pokemon-tcg-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $pokemon-tcg-primary,
+      accent: $pokemon-tcg-accent,
+      warn: $pokemon-tcg-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($pokemon-tcg-theme);
+
+// Set default values
+$light-blue: mat.define-palette(mat.$light-blue-palette, A400);
+$red: mat.define-palette(mat.$red-palette);
+$deep-orange: mat.define-palette(mat.$deep-orange-palette, A200);
+$pink: mat.define-palette(mat.$red-palette, A100);
+$crimson: mat.define-palette(mat.$red-palette, A400);
+
+// Dark Theme Colors
+$green-dark: mat.define-palette(mat.$green-palette, A400);
+$indigo-dark: mat.define-palette(mat.$indigo-palette, A200);
+$purple-dark: mat.define-palette(mat.$purple-palette, A700);
+$amber-dark: mat.define-palette(mat.$amber-palette, A400);
+$teal-dark: mat.define-palette(mat.$teal-palette, A400);
+
+// Light Theme Colors
+$green-light: mat.define-palette(mat.$green-palette, A700);
+$indigo-light: mat.define-palette(mat.$indigo-palette, A400);
+$purple-light: mat.define-palette(mat.$purple-palette, A700);
+$amber-light: mat.define-palette(mat.$amber-palette, A700);
+$teal-light: mat.define-palette(mat.$teal-palette, A700);
+
+.dark-green {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $green-dark,
+        accent: $light-blue,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-blue {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $light-blue,
+        accent: $green-dark,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-red {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $red,
+        accent: $light-blue,
+        warn: $pink,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-indigo {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $indigo-dark,
+        accent: $deep-orange,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-orange {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $deep-orange,
+        accent: $indigo-dark,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-purple {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $purple-dark,
+        accent: $amber-dark,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-amber {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $amber-dark,
+        accent: $purple-dark,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-crimson {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $crimson,
+        accent: $teal-dark,
+        warn: $deep-orange,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.dark-teal {
+  $theme: mat.define-dark-theme(
+    (
+      color: (
+        primary: $teal-dark,
+        accent: $crimson,
+        warn: $deep-orange,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+// Light themes
+.light-green {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $green-light,
+        accent: $light-blue,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-blue {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $light-blue,
+        accent: $green-light,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-red {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $red,
+        accent: $light-blue,
+        warn: $pink
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-indigo {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $indigo-dark,
+        accent: $deep-orange,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-orange {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $deep-orange,
+        accent: $indigo-light,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-purple {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $purple-light,
+        accent: $amber-dark,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-amber {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $amber-light,
+        accent: $purple-light,
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-crimson {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $crimson,
+        accent: $teal-light,
+        warn: $deep-orange
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
+.light-teal {
+  $theme: mat.define-light-theme(
+    (
+      color: (
+        primary: $teal-light,
+        accent: $crimson,
+        warn: $deep-orange
+      ),
+    )
+  );
+
+  @include mat.all-component-colors($theme);
+}
+
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
