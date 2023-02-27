@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
-    "build": "nx build",
+    "build": "npm run write:env -s && nx build --configuration production",
+    "start": "npm run write:env -s && nx run pokemon-tcg:serve:development --proxy-config proxy.conf.js",
+    "deploy": "npm run write:env -s && nx deploy --base-href=https://newaeonweb.github.io/pokemon-app/ --no-silent",
     "test": "nx test"
   },
   "private": true,
@@ -34,6 +35,7 @@
     "@angular/cli": "~15.1.0",
     "@angular/compiler-cli": "~15.1.0",
     "@angular/language-service": "~15.1.0",
+    "@ngneat/cashew": "^3.1.0",
     "@nrwl/cypress": "15.7.2",
     "@nrwl/eslint-plugin-nx": "15.7.2",
     "@nrwl/jest": "15.7.2",

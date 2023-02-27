@@ -1,0 +1,38 @@
+<mat-card class="mat-elevation-z3">
+  <mat-card-header>
+    <mat-card-title>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <span fxFlex> {{ card.name }}</span>
+        <small [hidden]="!card.hp">HP: {{ card.hp }}</small>
+      </div>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <p><strong>Set:</strong> {{ card.set.name }}</p>
+        <p><strong>Series:</strong> {{ card.set.series }}</p>
+      </div>
+      <mat-divider></mat-divider>
+    </mat-card-subtitle>
+    <mat-card-subtitle>
+      <p>
+        <strong> Supertype:</strong> {{ card.supertype }} <br />
+        <strong> Subtypes:</strong> {{ card.subtypes }}
+        <br />
+        <strong>Types:</strong> {{ card.types }}
+      </p>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="img-placeholder">
+      <img src="{{ card.images.small }}" alt="{{ card.name }}" loading="lazy" />
+    </div>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button (click)="addToMyDesk(card)">
+      <span translate>Add to my desk</span>
+    </button>
+    <button mat-stroked-button (click)="showCardDetails(card)">
+      <span translate>More details</span>
+    </button>
+  </mat-card-actions>
+</mat-card>

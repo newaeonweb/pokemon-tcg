@@ -1,0 +1,40 @@
+@use "@angular/material" as mat;
+
+:host .mat-card-header-text {
+    margin: 0;
+    width: 100%;
+}
+
+:host .mat-card-subtitle {
+    p {
+        margin-bottom: 0;
+    }
+
+    strong {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+
+.img-placeholder {
+    background-color: aliceblue;
+    max-width: 245px;
+    margin: 0 auto;
+    padding: 0;
+    height: auto;
+    min-height: 285px;
+    border-radius: 10px;
+
+    img {
+        width: 100%;
+    }
+}
+
+.mat-card {
+    &:hover {
+        @include mat.elevation(12);
+    }
+}
+
+.mat-card-actions {
+    text-align: center;
+}

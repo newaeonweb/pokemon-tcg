@@ -1,0 +1,25 @@
+<div fxlayout="row" fxLayoutAlign="center center">
+  <img src="{{ card?.images.small }}" alt="" />
+</div>
+<ul>
+  <li><span class="label" translate>Name</span>: {{ card?.name }}</li>
+  <li><span class="label" translate>Supertype</span>: {{ card?.supertype }}</li>
+  <li *ngIf="card?.evolvesFrom">
+    <span class="label" translate>Evolves From</span>: {{ card?.evolvesFrom }}
+  </li>
+  <li *ngIf="card?.evolvesTo">
+    <span class="label" translate>Evolves To: </span>: {{ card?.evolvesTo }}
+  </li>
+  <li><span class="label" translate>Attacks</span>: array</li>
+  <li>
+    <span class="label" translate>Release date</span>:
+    {{ card?.set.releaseDate | date }}
+  </li>
+  <li><span class="label" translate>Rarity</span>: {{ card?.rarity }}</li>
+  <li><span class="label" translate>Set</span>: {{ card?.set.name }}</li>
+  <li><span class="label" translate>Series</span>: {{ card?.set.series }}</li>
+  <li><span class="label" translate>Symbol</span>:</li>
+</ul>
+<div fxlayout="row" fxLayoutAlign="center center">
+  <img width="40" src="{{ card?.set.images.symbol }}" alt="" />
+</div>

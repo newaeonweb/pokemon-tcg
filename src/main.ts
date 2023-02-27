@@ -1,4 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideHttpClient } from '@angular/common/http';
 import {
   provideRouter,
   withEnabledBlockingInitialNavigation,
@@ -9,5 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(appRoutes, withEnabledBlockingInitialNavigation()), importProvidersFrom(BrowserAnimationsModule)],
+  providers: [
+    provideRouter(appRoutes, withEnabledBlockingInitialNavigation()),
+    importProvidersFrom(BrowserAnimationsModule),
+    provideHttpClient(),
+  ],
 }).catch((err) => console.error(err));
