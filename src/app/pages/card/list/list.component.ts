@@ -21,7 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { Params, ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   Subscription,
   Observable,
@@ -43,6 +43,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { SelectedSearchPipeModule } from 'src/app/pipes/selected-search.pipe';
 import { PokeCardComponent } from '../components/poke-card/poke-card.component';
 import { PokeCardDetailComponent } from '../components/poke-card-detail/poke-card-detail.component';
+import { QueryParams } from 'src/app/interfaces/query-params.interface';
 
 @Component({
   selector: 'pokemon-tcg-list',
@@ -78,7 +79,7 @@ export class ListComponent implements OnDestroy, AfterViewInit, OnInit {
   characters$ = new Observable<Card[]>();
   searchTerm$ = new BehaviorSubject<any>('');
   resultsLength = 0;
-  queryParams!: Params;
+  queryParams!: QueryParams;
   formFilter!: FormGroup;
   searchListText = '';
   emptyResult = false;
@@ -103,10 +104,10 @@ export class ListComponent implements OnDestroy, AfterViewInit, OnInit {
       debounceTime(300),
       switchMap((params) => {
         this.queryParams = {
-          page: params['page'] || 1,
-          pageSize: params['pageSize'] || 4,
-          orderBy: params['orderBy'] || 'name',
-          q: params['q'] || '',
+          page: params['page'],
+          pageSize: params['pageSize'],
+          orderBy: params['orderBy'],
+          q: params['q'],
         };
 
         if (params['q']) {
@@ -130,8 +131,8 @@ export class ListComponent implements OnDestroy, AfterViewInit, OnInit {
 
   ngAfterViewInit(): void {
     this.paginator.page.subscribe(() => {
-      this.queryParams['page'] = this.paginator.pageIndex + 1;
-      this.queryParams['pageSize'] = this.paginator.pageSize;
+      this.queryParams.page = this.paginator.pageIndex + 1;
+      this.queryParams.pageSize = this.paginator.pageSize;
       this.characters$ = this.getCards();
       this.updateUrlQueryParams();
       this.toTop.nativeElement.scrollIntoView({
@@ -170,7 +171,7 @@ export class ListComponent implements OnDestroy, AfterViewInit, OnInit {
   }
 
   convertQueryStringToObject() {
-    const queryStringToObj = this.queryParams['q']
+    const queryStringToObj = this.queryParams?.q
       .split(' ')
       .map((value: string) => value.split(':').map((text) => text.trim()))
       .reduce((obj: { [value: string]: any }, value: any[]) => {
@@ -281,7 +282,7 @@ export class ListComponent implements OnDestroy, AfterViewInit, OnInit {
         }
         this.emptyResult = false;
         this.resultsLength = res.totalCount;
-        this.queryParams['pageSize'] = res.pageSize;
+        this.queryParams.pageSize = res.pageSize;
         this.characters$ = of(res.data);
       }),
       catchError(() => (this.characters$ = of([]))),

@@ -26,9 +26,9 @@ export class PokemonService {
 
   getCards(req: QueryParams): Observable<HttpApiResponse> {
     const params = new HttpParams({
-      fromString: `${req.query ? 'q=' + req.query : ''}&page=${
-        req.page
-      }&pageSize=${req.pageSize}&orderBy=${req.orderBy}`,
+      fromString: `${req.q ? 'q=' + req.q : ''}&page=${req.page}&pageSize=${
+        req.pageSize
+      }&orderBy=${req.orderBy}`,
     });
 
     return this.httpClient

@@ -17,6 +17,7 @@
       fxLayoutAlign="space-between center"
       color="accent"
     >
+      Card
       <!-- <div>{{ card['name'] }}</div> -->
       <div>
         <button
@@ -43,17 +44,15 @@
     </div>
   </mat-sidenav>
 
-  <mat-sidenav-content class="main contents">
-    <div class="container">
-      <div fxLayout="row" fxLayoutAlign="center start">
-        <h1 translate>Pokemon Cards</h1>
+  <mat-sidenav-content>
+    <div class="container mx-auto">
+      <div class="flex flex-row justify-center items-end">
+        <h1>Pokemon Cards</h1>
       </div>
       <form [formGroup]="formFilter" #toTop>
-        <div class="flex-container">
-          <mat-form-field>
-            <mat-label
-              ><span translate>Search card by Pokémon name</span></mat-label
-            >
+        <div class="flex flex-row justify-around items-start content-center">
+          <mat-form-field class="w-full">
+            <mat-label><span>Search card by Pokémon name</span></mat-label>
             <input
               matInput
               #search
@@ -74,16 +73,12 @@
           </mat-form-field>
         </div>
 
-        <div
-          fxLayout="row wrap"
-          fxLayoutGap="6px"
-          fxLayoutAlign="center center"
-        >
-          <div fxFlex="20">
-            <mat-form-field appearance="fill">
-              <mat-label><span translate>Filter by supertypes</span></mat-label>
+        <div class="flex flex-row flex-wrap gap-2 justify-start items-center">
+          <div class="flex lg:w-1/5 w-full">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label><span>Filter by supertypes</span></mat-label>
               <mat-select formControlName="supertype">
-                <mat-option [value]="''"><span translate>All</span></mat-option>
+                <mat-option [value]="''"><span>All</span></mat-option>
                 <mat-option
                   *ngFor="let supertypes of supertypesList"
                   [value]="supertypes"
@@ -93,22 +88,22 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlex>
-            <mat-form-field appearance="fill">
-              <mat-label><span translate>Filter by types</span></mat-label>
+          <div class="flex lg:w-1/5 w-full">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label><span>Filter by types</span></mat-label>
               <mat-select formControlName="types">
-                <mat-option [value]="''"><span translate>All</span></mat-option>
+                <mat-option [value]="''"><span>All</span></mat-option>
                 <mat-option *ngFor="let types of typesList" [value]="types">
                   {{ types }}</mat-option
                 >
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlex>
-            <mat-form-field appearance="fill">
-              <mat-label><span translate>Filter by subtypes</span></mat-label>
+          <div class="flex lg:w-1/5 w-full">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label><span>Filter by subtypes</span></mat-label>
               <mat-select formControlName="subtypes">
-                <mat-option [value]="''"><span translate>All</span></mat-option>
+                <mat-option [value]="''"><span>All</span></mat-option>
                 <mat-option
                   *ngFor="let subtypes of subtypesList"
                   [value]="subtypes"
@@ -118,9 +113,9 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlex>
-            <mat-form-field appearance="fill">
-              <mat-label><span translate>Filter by set</span></mat-label>
+          <div class="flex lg:w-1/5 w-full">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label><span>Filter by set</span></mat-label>
               <mat-select formControlName="set">
                 <input
                   class="select-search"
@@ -140,7 +135,7 @@
                 >
                   <mat-icon>close</mat-icon>
                 </button>
-                <mat-option [value]="''"><span translate>All</span></mat-option>
+                <mat-option [value]="''"><span>All</span></mat-option>
                 <mat-option
                   *ngFor="let set of setList | selectedSearch : searchListText"
                   [value]="set.name"
@@ -153,14 +148,14 @@
               </mat-select>
             </mat-form-field>
           </div>
-          <div fxFlex="10">
+          <div class="flex lg:w-1/6 w-full">
             <button
               type="button"
               mat-stroked-button
               color="accent"
               (click)="clearFilters()"
             >
-              <span translate>Clear Filters</span>
+              <span>Clear Filters</span>
             </button>
           </div>
         </div>
@@ -169,16 +164,9 @@
 
       <div class="card-content">
         <div *ngIf="characters$ | async as cardsList">
-          <div
-            fxLayout="row wrap"
-            fxLayoutGap="16px grid"
-            fxLayout.lt-sm="column"
-            fxLayoutAlign="start center"
-            fxLayoutAlign.lt-sm="start center"
-          >
+          <div class="flex flex-row flex-wrap gap-4 items-center justify-start">
             <ng-container *ngFor="let card of cardsList">
-              <div fxFlex="25%" fxFlex.lt-md="50%" fxFlex.lt-sm="100%">
-                pokecard
+              <div>
                 <pokemon-tcg-poke-card
                   [card]="card"
                   (openDetail)="showDetails($event)"
@@ -207,7 +195,6 @@
       <mat-paginator
         #paginator
         [length]="resultsLength"
-        [pageSize]="queryParams['pageSize']"
         [pageSizeOptions]="[5, 10, 20]"
         showFirstLastButtons
       >
